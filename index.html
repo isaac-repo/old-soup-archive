@@ -34,49 +34,39 @@
 <div class="thumbnails">
 	<div>
 		<ul>
-			<li class="i">
-				<img src="static/pages/1-thumb.jpg" width="76" height="100" class="page-1">
-				<span>1</span>
-			</li>
-			<li class="d">
-				<img src="static/pages/2-thumb.jpg" width="76" height="100" class="page-2">
-				<img src="static/pages/3-thumb.jpg" width="76" height="100" class="page-3">
-				<span>2-3</span>
-			</li>
-			<li class="d">
-				<img src="static/pages/4-thumb.jpg" width="76" height="100" class="page-4">
-				<img src="static/pages/5-thumb.jpg" width="76" height="100" class="page-5">
-				<span>4-5</span>
-			</li>
-			<li class="d">
-				<img src="static/pages/6-thumb.jpg" width="76" height="100" class="page-6">
-				<img src="static/pages/7-thumb.jpg" width="76" height="100" class="page-7">
-				<span>6-7</span>
-			</li>
-			<li class="d">
-				<img src="static/pages/8-thumb.jpg" width="76" height="100" class="page-8">
-				<img src="static/pages/9-thumb.jpg" width="76" height="100" class="page-9">
-				<span>8-9</span>
-			</li>
-			<li class="d">
-				<img src="static/pages/10-thumb.jpg" width="76" height="100" class="page-10">
-				<img src="static/pages/11-thumb.jpg" width="76" height="100" class="page-11">
-				<span>10-11</span>
-			</li>
-			<li class="d">
-				<img src="static/pages/12-thumb.jpg" width="76" height="100" class="page-12">
-				<img src="static/pages/13-thumb.jpg" width="76" height="100" class="page-13">
-				<span>12-13</span>
-			</li>
-			<li class="i">
-				<img src="static/pages/14-thumb.jpg" width="76" height="100" class="page-14">
-				<span>12</span>
-			</li>
 		<ul>
 	<div>	
 </div>
 
 <script type="text/javascript">
+
+var pageCount = 100;
+
+function generateThumbnails(pageCount) {
+  const thumbnailList = document.querySelector('.thumbnails ul'); // Get the <ul> element
+
+  thumbnailList.innerHTML = ''; // Clear existing thumbnails (if any)
+
+  for (let i = 1; i <= pageCount; i++) {
+    const listItem = document.createElement('li');
+    listItem.classList.add('i'); // Add class 'd' for even, 'i' for odd
+
+    const image = document.createElement('img');
+    image.src = `static/pages/${i}-thumb.jpg`; // Set image source
+    image.width = 76;
+    image.height = 100;
+    image.classList.add(`page-${i}`); // Add page class
+
+    const span = document.createElement('span');
+    span.textContent = i; // Set page number
+
+    listItem.appendChild(image); // Add image to list item
+    listItem.appendChild(span); // Add span to list item
+    thumbnailList.appendChild(listItem); // Add list item to the list
+  }
+}
+
+generateThumbnails(pageCount);
 
 function loadApp() {
 
@@ -125,7 +115,7 @@ function loadApp() {
 
 			// The number of pages
 
-			pages: 14,
+			pages: pageCount,
 
 			// Events
 
