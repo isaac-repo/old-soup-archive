@@ -250,10 +250,12 @@ body{
 	transition:transform ease-in-out 100ms;
 	white-space: nowrap;
 	overflow-x: auto;
-	-webkit-overflow-scrolling: touch; /* Important for iOS */
+	-webkit-overflow-scrolling: touch;
 	overflow-y: hidden;
 	height: 125%;
 }
+
+
 
 .thumbanils-touch ul{
 	-webkit-transform:none;

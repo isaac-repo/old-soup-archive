@@ -68,6 +68,18 @@ function generateThumbnails(pageCount) {
 
 generateThumbnails(pageCount);
 
+function scrollToThumbnail(pageNumber) {
+  const thumbnailList = document.querySelector('.thumbnails ul');
+  const thumbnailItem = thumbnailList.querySelector(`.page-${pageNumber}`); // Select the <li> for the given page number
+
+  if (thumbnailItem) {
+    const offsetLeft = thumbnailItem.offsetLeft; // Get the item's offset from the left
+
+    thumbnailList.scrollLeft = offsetLeft; // Scroll the list to that position
+  }
+}
+
+
 function loadApp() {
 
  	$('#canvas').fadeIn(1000);
@@ -142,6 +154,8 @@ function loadApp() {
 					$('.thumbnails .page-'+page).
 						parent().
 						addClass('current');
+
+					scrollToThumbnail(page)
 
 
 
