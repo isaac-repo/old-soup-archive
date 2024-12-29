@@ -1,5 +1,5 @@
 /*
- * Magazine sample
+ * Adapted from turn.js magazine sample at https://github.com/blasten/turn.js/
 */
 
 function addPage(page, book) {
