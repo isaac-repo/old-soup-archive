@@ -11,10 +11,16 @@ function addPage(page, book) {
 
 	// Add the page to the flipbook
 	if (book.turn('addPage', element, page)) {
+		if (page != 1){
+				// Add the initial HTML
+				// It will contain a loader indicator and a gradient
+				element.html('<div class="gradient"></div><div class="loader"></div>');	
+		}
+		// otherwise it's the cover
+		else{
+			element.html('<div></div><div class="loader"></div>');
+		}
 
-		// Add the initial HTML
-		// It will contain a loader indicator and a gradient
-		element.html('<div class="gradient"></div><div class="loader"></div>');
 
 		// Load the page
 		loadPage(page, element);
@@ -48,7 +54,7 @@ function loadPage(page, pageElement) {
 
 	// Load the page
 
-	img.attr('src', 'src/pages/' +  page + '.jpg');
+	img.attr('src', 'src/pages/' +  page + '.png');
 
 	loadRegions(page, pageElement);
 
@@ -179,7 +185,7 @@ function loadLargePage(page, pageElement) {
 
 	// Loadnew page
 	
-	img.attr('src', 'src/pages/' +  page + '-large.jpg');
+	img.attr('src', 'src/pages/' +  page + '-large.png');
 }
 
 // Load small page
@@ -193,7 +199,7 @@ function loadSmallPage(page, pageElement) {
 	img.unbind('load');
 	// Loadnew page
 
-	img.attr('src', 'src/pages/' +  page + '.jpg');
+	img.attr('src', 'src/pages/' +  page + '.png');
 }
 
 // http://code.google.com/p/chromium/issues/detail?id=128488
@@ -303,7 +309,7 @@ function setPreview(view) {
 
 	var previewWidth = 112,
 		previewHeight = 73,
-		previewSrc = 'src/pages/preview.jpg',
+		previewSrc = 'src/pages/preview.png',
 		preview = $(_thumbPreview.children(':first')),
 		numPages = (view==1 || view==$('#slider').slider('option', 'max')) ? 1 : 2,
 		width = (numPages==1) ? previewWidth/2 : previewWidth;
