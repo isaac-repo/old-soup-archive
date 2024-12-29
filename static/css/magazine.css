@@ -250,8 +250,20 @@ body{
 	transition:transform ease-in-out 100ms;
 	white-space: nowrap;
 	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch; /* for smoother scrolling on iOS */
 	overflow-y: hidden;
 	height: 125%;
+}
+
+/* Force scrollbar visibility (may not work on all devices) */
+.thumbnails ul::-webkit-scrollbar {
+	-webkit-appearance: none;
+	width: 7px; 
+}
+
+.thumbnails ul::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: rgba(0, 0, 0, .5); 
 }
 
 .thumbanils-touch ul{
@@ -417,4 +429,3 @@ border-radius: 10px;
 ::-webkit-scrollbar-thumb:hover {
 background:grey;
 } */
- 
