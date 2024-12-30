@@ -12,7 +12,55 @@
 
 <div id="canvas">
 
-<div class="zoom-icon zoom-icon-in"></div>
+<!-- Nav -->
+<div class="zoom-icon zoom-icon-in">
+</div>
+
+<div class="modal">
+	<div class="picker">
+		<span class="poems" title="揀首詩跳去">
+			<p class="poem-title">
+				<a href="/#page/1">封面</a>
+			</p>
+			<p class="poem-title">
+				<a href="/#page/2">墨樂</a>
+			</p>
+			<p class="poem-title">
+				<a href="/#page/3">入廚有冇序</a>
+			</p>
+			<p class="poem-title">
+				<a href="/#page/4">泣五泣十</a>
+			</p>
+			<p class="poem-title">
+				<a href="/#page/5">零食</a>
+			</p>
+			<p class="poem-title">
+				<a href="/#page/6">看化</a>
+			</p>
+			<p class="poem-title">
+				<a href="/#page/7">獨樂 , 衆樂</a>
+			</p>
+			<p class="poem-title">
+				<a href="/#page/8">宗敎</a>
+			</p>
+			<p class="poem-title">
+				<a href="/#page/9">移民手記</a>
+			</p>
+			<p class="poem-title">
+				<a href="/#page/10">節日</a>
+			</p>
+			<p class="poem-title">
+				<a href="/#page/11">一家人</a>
+			</p>
+			<p class="poem-title">
+				<a href="/#page/12">子女心聲 , 母親</a>
+			</p>
+			<p class="poem-title">
+				<a href="/#page/13">聚雙親 , 異鄉客</a>
+			</p>
+		</span>
+	  </div>
+</div>
 
 <div class="magazine-viewport">
 	<div class="container">
@@ -23,61 +71,31 @@
 			<div ignore="1" class="previous-button"></div>
 		</div>
 	</div>
-	<div class="bottom">
-		<div id="slider-bar" class="turnjs-slider">
-			<div id="slider"></div>
-		</div>
-	</div>
 </div>
 
-<!-- Thumbnails -->
-<div class="thumbnails">
-	<div>
-		<ul>
-		<ul>
-	<div>	
-</div>
 
 <script type="text/javascript">
 
 var pageCount = 14;
 
-function generateThumbnails(pageCount) {
-  const thumbnailList = document.querySelector('.thumbnails ul'); // Get the <ul> element
 
-  thumbnailList.innerHTML = ''; // Clear existing thumbnails (if any)
+// brings up modal for poem selection
+const zoomIcon = document.querySelector('.zoom-icon');
+zoomIcon.addEventListener('click', function(event) {
+  console.log("Zoom icon clicked:", event);
+  const modal = document.querySelector('.modal');
+  modal.style.display = 'block'
+});
 
-  for (let i = 1; i <= pageCount; i++) {
-    const listItem = document.createElement('li');
-    listItem.classList.add('i'); // Add class 'd' for even, 'i' for odd
-
-    const image = document.createElement('img');
-    image.src = `static/pages/${i}-thumb.jpg`; // Set image source
-    image.width = 76;
-    image.height = 100;
-    image.classList.add(`page-${i}`); // Add page class
-
-    const span = document.createElement('span');
-    span.textContent = i; // Set page number
-
-    listItem.appendChild(image); // Add image to list item
-    listItem.appendChild(span); // Add span to list item
-    thumbnailList.appendChild(listItem); // Add list item to the list
-  }
-}
-
-generateThumbnails(pageCount);
-
-function scrollToThumbnail(pageNumber) {
-  const thumbnailList = document.querySelector('.thumbnails ul');
-  const thumbnailItem = thumbnailList.querySelector(`.page-${pageNumber}`); // Select the <li> for the given page number
-
-  if (thumbnailItem) {
-    const offsetLeft = thumbnailItem.offsetLeft; // Get the item's offset from the left
-
-    thumbnailList.scrollLeft = offsetLeft; // Scroll the list to that position
-  }
-}
+// attaches event listeners to all poems in modal
+const poemTitles = document.querySelectorAll('.poem-title');
+poemTitles.forEach(poemTitle => {
+    poemTitle.addEventListener('click', function() {
+    console.log("Poem title clicked:", this.textContent);
+	const modal = document.querySelector('.modal');
+  	modal.style.display = 'none';
+    })
+});
 
 
 function loadApp() {
@@ -154,10 +172,6 @@ function loadApp() {
 					$('.thumbnails .page-'+page).
 						parent().
 						addClass('current');
-
-					scrollToThumbnail(page)
-
-
 
 				},
 
@@ -434,32 +448,32 @@ function loadApp() {
 
 // Zoom icon
 
- $('.zoom-icon').bind('mouseover', function() { 
+//  $('.zoom-icon').bind('mouseover', function() { 
  	
- 	if ($(this).hasClass('zoom-icon-in'))
- 		$(this).addClass('zoom-icon-in-hover');
+//  	if ($(this).hasClass('zoom-icon-in'))
+//  		$(this).addClass('zoom-icon-in-hover');
 
- 	if ($(this).hasClass('zoom-icon-out'))
- 		$(this).addClass('zoom-icon-out-hover');
+//  	if ($(this).hasClass('zoom-icon-out'))
+//  		$(this).addClass('zoom-icon-out-hover');
  
- }).bind('mouseout', function() { 
+//  }).bind('mouseout', function() { 
  	
- 	 if ($(this).hasClass('zoom-icon-in'))
- 		$(this).removeClass('zoom-icon-in-hover');
+//  	 if ($(this).hasClass('zoom-icon-in'))
+//  		$(this).removeClass('zoom-icon-in-hover');
  	
- 	if ($(this).hasClass('zoom-icon-out'))
- 		$(this).removeClass('zoom-icon-out-hover');
+//  	if ($(this).hasClass('zoom-icon-out'))
+//  		$(this).removeClass('zoom-icon-out-hover');
 
- }).bind('click', function() {
+//  }).bind('click', function() {
 
- 	if ($(this).hasClass('zoom-icon-in'))
- 		$('.magazine-viewport').zoom('zoomIn');
- 	else if ($(this).hasClass('zoom-icon-out'))	
-		$('.magazine-viewport').zoom('zoomOut');
+//  	if ($(this).hasClass('zoom-icon-in'))
+//  		$('.magazine-viewport').zoom('zoomIn');
+//  	else if ($(this).hasClass('zoom-icon-out'))	
+// 		$('.magazine-viewport').zoom('zoomOut');
 
- });
+//  });
 
- $('#canvas').hide();
+//  $('#canvas').hide();
 
 
 // Load the HTML4 version if there's not CSS transform
