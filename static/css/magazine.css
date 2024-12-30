@@ -443,11 +443,6 @@ body{
 .picker::after {
 	top: auto;
 	bottom: 0;
-	/* background: linear-gradient(
-	  hsl(200 20% 10% / 0%), 
-	  35%, 
-	  hsl(200 20% 10%)
-	);  */
 }
 
 .picker > * {
@@ -471,7 +466,7 @@ body{
 	align-self: start;
 	color: hsl(0 0% 65%);
 	z-index: 1;
-	font-size: min(.5em, 40%);
+	font-size: min(1.5em, 60%);
 	font-weight: bold;
 	text-align: center;
 	color: white;
@@ -489,7 +484,12 @@ body{
 .poem-title {
 	text-align: center;
 }
-  
+
+/* @font-face {
+    font-family: 'YourFontName'; 
+    src: url('http://domain.example/fonts/font.ttf'); 
+} */
+
 .poem-title > a{
 	color: white;
 	font-size: max(.5em, 40%);
